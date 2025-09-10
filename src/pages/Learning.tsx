@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Leaf, Droplets, Recycle, Zap, Globe } from 'lucide-react';
+import { BookOpen, Leaf, Droplets, Recycle, Zap, Globe, ArrowDown } from 'lucide-react';
+import EnvironmentalLearningHub from '../components/EnvironmentalLearningHub';
 
 const Learning = () => {
   const topics = [
@@ -76,21 +77,29 @@ const Learning = () => {
           className="text-center mb-12"
         >
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-            Environmental Learning Hub
+            Environmental Learning Center
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore key environmental topics and discover fascinating facts about our planet.
-            Learn the science behind environmental challenges and solutions.
+            Discover the science behind environmental challenges and explore solutions for a sustainable future.
+            Start with quick facts below, then dive deeper into comprehensive learning modules.
           </p>
         </motion.div>
 
+        {/* Quick Facts Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-16"
+        >
+          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Quick Environmental Facts</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {topics.map((topic, index) => (
             <motion.div
               key={topic.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
               whileHover={{ y: -5 }}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden"
             >
@@ -125,18 +134,40 @@ const Learning = () => {
             </motion.div>
           ))}
         </div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1 }}
+          className="text-center mb-8"
+        >
+          <div className="flex flex-col items-center space-y-2">
+            <span className="text-gray-600 font-medium">Explore Detailed Learning Modules Below</span>
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <ArrowDown className="w-6 h-6 text-emerald-500" />
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Environmental Learning Hub */}
+        <EnvironmentalLearningHub />
 
         {/* Additional Learning Resources */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 1.2 }}
           className="mt-12 bg-gradient-to-r from-emerald-600 to-blue-600 rounded-2xl p-8 text-white"
         >
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4">Ready to Take Action?</h2>
             <p className="text-xl mb-6 opacity-90">
-              Now that you've learned about environmental issues, put your knowledge to the test!
+              Now that you've explored environmental topics, put your knowledge to the test with interactive activities!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="/quizzes">
@@ -145,7 +176,7 @@ const Learning = () => {
                   whileTap={{ scale: 0.95 }}
                   className="bg-white text-emerald-600 px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  Take a Quiz
+                  Take Quizzes
                 </motion.button>
               </a>
               <a href="/interactive">
@@ -154,7 +185,7 @@ const Learning = () => {
                   whileTap={{ scale: 0.95 }}
                   className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-emerald-600 transition-colors"
                 >
-                  Play Games
+                  Interactive Games
                 </motion.button>
               </a>
             </div>
